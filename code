@@ -1,0 +1,21 @@
+def substring_with_maxunique(s):
+    i=1
+    j=0
+    res=len(s)+1
+    freq={}
+    freq[s[j]]=1
+    uniqlen=len(set(s))
+    while(i<len(s)):
+        if(s[i] not in freq):
+            freq[s[i]]=1
+        else:
+            freq[s[i]]+=1
+        if(len(freq)==uniqlen):
+            while(j<i and freq[s[j]]>1):
+                freq[s[j]]-=1
+                j+=1
+            res=min(res,i-j+1)
+        i+=1
+    return res
+s=input()
+print(substring_with_maxunique(s))
